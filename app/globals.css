@@ -121,3 +121,8 @@
     @apply bg-background text-foreground;
   }
 }
+@layer utilities {
+  .palt {
+    font-feature-settings: 'palt';
+  }
+}

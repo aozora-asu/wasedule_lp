@@ -126,7 +126,7 @@ export default function RootLayout ({
                   </NavigationMenuContent>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
-                  <Link href='/' legacyBehavior passHref>
+                  <Link href='/socials' legacyBehavior passHref>
                     <NavigationMenuLink
                       className={navigationMenuTriggerStyle()}
                     >
@@ -175,7 +175,7 @@ export default function RootLayout ({
                     </li>
                   </div>
                   <li className='ml-2'>
-                    <Link href=''>メディア</Link>
+                    <Link href='/socials'>メディア</Link>
                   </li>
                   <li className='ml-2'>
                     <Link href=''>お問い合わせ</Link>

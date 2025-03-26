@@ -21,7 +21,8 @@ import {
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
-import { ChevronDown, Menu } from "lucide-react";
+import { ChevronDown, DownloadIcon, Menu } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const notoSansJP = Noto_Sans_JP({
   subsets: ["latin"],
@@ -56,11 +57,11 @@ export default function RootLayout({
                 <NavigationMenuItem>
                   <NavigationMenuTrigger>使い方ガイド</NavigationMenuTrigger>
                   <NavigationMenuContent>
-                    <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
+                    <ul className="grid gap-2 p-2 md:w-[400px] lg:grid-cols-[.75fr_1fr]">
                       <li className="row-span-3">
                         <NavigationMenuLink asChild>
                           <Link
-                            className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
+                            className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-4 no-underline outline-none focus:shadow-md"
                             href="/"
                           >
                             <div className="h-6 w-6" />
@@ -138,6 +139,14 @@ export default function RootLayout({
                     >
                       お問い合わせ
                     </NavigationMenuLink>
+                  </Link>
+                </NavigationMenuItem>
+                <NavigationMenuItem>
+                  <Link href="/contact" legacyBehavior passHref>
+                    <Button>
+                      <DownloadIcon />
+                      ダウンロード
+                    </Button>
                   </Link>
                 </NavigationMenuItem>
               </NavigationMenuList>

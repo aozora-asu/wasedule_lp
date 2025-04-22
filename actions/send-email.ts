@@ -21,9 +21,9 @@ export async function sendContactEmail({
   email,
   body,
 }: SendEmailParams): Promise<SendEmailResponse> {
-  const from = "onboarding@resend.dev";
+  const from = process.env.CONTACT_EMAIL_FROM || ""; //TODO エラー処理
   const to = process.env.CONTACT_EMAIL_TO || "";
-  const subject = `${name}さんのお問い合わせ`;
+  const subject = `[LPお問い合わせ]${name}さんのお問い合わせ`;
   const react = EmailTemplate({ name, email, body });
 
   try {

@@ -2,6 +2,7 @@ import Features from "@/components/features";
 import MockupCarousel from "@/components/mockup-carousel";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -22,14 +23,18 @@ export default function Home() {
               </span>
             </div>
             <div className="flex flex-wrap gap-4 my-6  justify-center lg:justify-start">
-              <Button>
-                Google Playでダウンロード
-                <ArrowRight />
-              </Button>
-              <Button>
-                App Storeでダウンロード
-                <ArrowRight />
-              </Button>
+              <Link href={process.env.GOOGLEPLAY_URL ?? ""}>
+                <Button>
+                  Google Playでダウンロード
+                  <ArrowRight />
+                </Button>
+              </Link>
+              <Link href={process.env.APPSTORE_URL ?? ""}>
+                <Button>
+                  App Storeでダウンロード
+                  <ArrowRight />
+                </Button>
+              </Link>
             </div>
           </div>
           <MockupCarousel />

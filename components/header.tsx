@@ -21,7 +21,7 @@ import NavigationMenuUsageGuides from "./nav-guide";
 
 export default function Header() {
   return (
-    <header className="flex justify-center w-full sticky top-0 bg-background/80 backdrop-blur-sm backdrop-saturate-200 px-4">
+    <header className="flex justify-center w-full sticky top-0 bg-background/80 backdrop-blur-sm backdrop-saturate-200 px-4 z-10">
       <div className="flex w-full max-w-7xl gap-3 justify-between py-4">
         <Link href="/">
           <Image

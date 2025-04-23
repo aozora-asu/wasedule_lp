@@ -1,3 +1,4 @@
+import MockupCarousel from "@/components/mockup-carousel";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
@@ -33,12 +34,7 @@ export default function Home() {
               </Button>
             </div>
           </div>
-          <Image
-            src="/screenshots/simulator_screenshot_CB3AC48E-3027-41C3-91DA-2698E7A67303-portrait.png"
-            width={420}
-            height={420}
-            alt="わせジュール"
-          />
+          <MockupCarousel />
         </section>
       </main>
     </>

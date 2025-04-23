@@ -1,14 +1,12 @@
+import Features from "@/components/features";
 import MockupCarousel from "@/components/mockup-carousel";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
-import Image from "next/image";
 
 export default function Home() {
-  const hoge = new Date(1739060973345)
-  console.log(hoge)
   return (
     <>
-      <main className="flex justify-center">
+      <main className="flex flex-col items-center gap-20">
         <section className="flex w-full max-w-7xl justify-center items-center flex-col lg:flex-row lg:gap-12">
           <div className="mt-8 mx-2 px-2">
             <div className="flex flex-col gap-6 text-center lg:text-start">
@@ -36,7 +34,9 @@ export default function Home() {
           </div>
           <MockupCarousel />
         </section>
+        <Features />
       </main>
+
     </>
   );
 }

@@ -10,6 +10,15 @@ export type Blog = {
   summary: string;
 }
 
+export type Feature = {
+  id: string;
+  heading: string;
+  body: string;
+  image: {
+    "url": string
+  };
+}
+
 if (!process.env.MICROCMS_DOMAIN) {
   throw new Error("MICROCMS_DOMAIN is required");
 }
@@ -41,3 +50,10 @@ export const getDetail = async (contentId: string) => {
 };
 
 
+// 記事を取得
+export const getFeatures = async () => {
+  const blog = await client.getList<Feature>({
+    endpoint: "features"
+  });
+  return blog;
+};

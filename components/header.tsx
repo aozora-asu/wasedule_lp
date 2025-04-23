@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/navigation-menu";
 import {
   Sheet,
+  SheetClose,
   SheetContent,
   SheetHeader,
   SheetTitle,
@@ -17,7 +18,7 @@ import {
 
 import { ChevronDown, DownloadIcon, Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import NavigationMenuUsageGuides from "./nav-guide";
+import { FeaturedUsageGuides, NavigationMenuUsageGuides } from "./nav-guide";
 
 export default function Header() {
   return (
@@ -90,30 +91,25 @@ export default function Header() {
               </SheetTitle>
             </SheetHeader>
             <ul className="flex flex-col gap-4 text-sm font-semibold">
+              <li className="ml-2">
+                <SheetClose asChild><Link href="/">トップ</Link></SheetClose>
+              </li>
               <div className="flex flex-col gap-4">
                 <li>
                   <ChevronDown className="inline h-3" />
                   使い方ガイド
                 </li>
-                <li className="ml-10">
-                  <Link href="">自動登録</Link>
-                </li>
-                <li className="ml-10">
-                  <Link href="">課題の管理</Link>
-                </li>
-                <li className="ml-10">
-                  <Link href="">スケジュールの管理</Link>
-                </li>
-                <li className="ml-10">
-                  <Link href="">もっと活用する</Link>
-                </li>
+                <FeaturedUsageGuides />
               </div>
-              <li className="ml-2">
-                <Link href="/socials">メディア</Link>
-              </li>
               <li className="ml-2">
                 <Link href="/contact">お問い合わせ</Link>
               </li>
+              <Link href="/downloads" legacyBehavior passHref>
+                <p className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive bg-primary text-primary-foreground shadow-xs hover:bg-primary/90 h-9 px-4 py-2 has-[>svg]:px-3">
+                  <DownloadIcon />
+                  <SheetClose>ダウンロード</SheetClose>
+                </p>
+              </Link>
             </ul>
             <footer className="flex flex-col gap-3 text-zinc-300 text-xs my-8">
               <div className="flex justify-center flex-wrap max-w-7xl gap-4 opacity-15">

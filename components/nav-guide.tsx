@@ -10,8 +10,10 @@ import {
 import { cn } from "@/lib/utils";
 import { getArticles } from "@/lib/microcms";
 import { Button } from "./ui/button";
+import { SheetClose } from "./ui/sheet";
 
-export default async function NavigationMenuUsageGuides() {
+// PC用
+export async function NavigationMenuUsageGuides() {
   const { contents } = await getArticles()
 
   if (!contents) {
@@ -65,5 +67,36 @@ export default async function NavigationMenuUsageGuides() {
         </ul>
       </NavigationMenuContent>
     </NavigationMenuItem>
+  )
+}
+
+
+// PC用
+export async function FeaturedUsageGuides() {
+  const { contents } = await getArticles()
+
+  if (!contents) {
+    return <Button variant="ghost" disabled>使い方ガイド</Button>
+  }
+  const featuredContents = contents.filter((content) => content.category["category-name"] == "Featured")
+  const mostFeaturedContents = contents.filter((content) => content.category["category-name"] == "FeaturedMost")
+
+  return (
+    <>
+      {
+        mostFeaturedContents.map((content) => (
+          <li className="ml-10" key={content.id}>
+            <Link href={`/guides/${content.id}`}><SheetClose className="text-start">{content.title}</SheetClose></Link>
+          </li>
+        ))
+      }
+      {
+        featuredContents.map((content) => (
+          <li className="ml-10" key={content.id}>
+            <Link href={`/guides/${content.id}`}><SheetClose className="text-start">{content.title}</SheetClose></Link>
+          </li>
+        ))
+      }
+    </>
   )
 }

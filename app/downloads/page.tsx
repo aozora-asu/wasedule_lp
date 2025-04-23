@@ -13,7 +13,7 @@ export default function Home() {
                 ダウンロード
               </span>
               <span className="break-keep">
-                わせジュールをダウンロードして、新しい生活を始めよう。
+                さあ、わせジュールをダウンロードして、新しい生活を始めよう。
               </span>
             </div>
             <div className="flex flex-wrap gap-4 my-6  justify-center lg:justify-start">

@@ -36,7 +36,7 @@ export default function Footer() {
           </Link>
         </div>
       </section>
-      <section className="flex flex-wrap max-w-7xl">
+      <section className="flex flex-col items-start max-w-7xl">
         <Link href="" className="p-3 text-sm font-semibold">
           プライバシーポリシー
         </Link>

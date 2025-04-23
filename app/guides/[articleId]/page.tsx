@@ -12,10 +12,11 @@ export async function generateStaticParams() {
 }
 
 export default async function StaticDetailPage({
-  params: { articleId },
+  params,
 }: {
   params: { articleId: string };
 }) {
+  const { articleId } = await params
   const blog = await getDetail(articleId);
 
   return (

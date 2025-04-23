@@ -2,11 +2,9 @@ import Image from "next/image";
 import Link from "next/link";
 import {
   NavigationMenu,
-  NavigationMenuContent,
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
-  NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 import {
@@ -17,9 +15,9 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 
-import { cn } from "@/lib/utils";
 import { ChevronDown, DownloadIcon, Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import NavigationMenuUsageGuides from "./nav-guide";
 
 export default function Header() {
   return (
@@ -35,77 +33,7 @@ export default function Header() {
         </Link>
         <NavigationMenu className="hidden lg:block">
           <NavigationMenuList>
-            <NavigationMenuItem>
-              <NavigationMenuTrigger>使い方ガイド</NavigationMenuTrigger>
-              <NavigationMenuContent>
-                <ul className="grid gap-2 p-2 md:w-[400px] lg:grid-cols-[.75fr_1fr]">
-                  <li className="row-span-3">
-                    <NavigationMenuLink asChild>
-                      <Link
-                        className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-4 no-underline outline-none focus:shadow-md"
-                        href="/guides/auto-reg"
-                      >
-                        <div className="h-full w-full" >
-                          <Image src="/auto-reg.png" height={400} width={400} alt="自動登録をイメージしたスクリーンショット" />
-                        </div>
-                        <div className="mb-2 mt-4 text-lg font-medium">
-                          自動登録
-                        </div>
-                        <p className="text-sm leading-tight text-muted-foreground">
-                          Beautifully designed components built with Radix
-                          UI and Tailwind CSS.
-                        </p>
-                      </Link>
-                    </NavigationMenuLink>
-                  </li>
-                  <NavigationMenuLink asChild>
-                    <a
-                      className={cn(
-                        "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
-                      )}
-                    >
-                      <div className="text-sm font-medium leading-none">
-                        課題の管理
-                      </div>
-                      <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                        Re-usable components built using Radix UI and
-                        Tailwind CSS.
-                      </p>
-                    </a>
-                  </NavigationMenuLink>
-                  <NavigationMenuLink asChild>
-                    <a
-                      className={cn(
-                        "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
-                      )}
-                    >
-                      <div className="text-sm font-medium leading-none">
-                        スケジュールの管理
-                      </div>
-                      <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                        Re-usable components built using Radix UI and
-                        Tailwind CSS.
-                      </p>
-                    </a>
-                  </NavigationMenuLink>
-                  <NavigationMenuLink asChild>
-                    <a
-                      className={cn(
-                        "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
-                      )}
-                    >
-                      <div className="text-sm font-medium leading-none">
-                        もっと活用する
-                      </div>
-                      <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                        Re-usable components built using Radix UI and
-                        Tailwind CSS.
-                      </p>
-                    </a>
-                  </NavigationMenuLink>
-                </ul>
-              </NavigationMenuContent>
-            </NavigationMenuItem>
+            <NavigationMenuUsageGuides />
             <NavigationMenuItem>
               <Link href="/contact" legacyBehavior passHref>
                 <NavigationMenuLink

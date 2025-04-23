@@ -1,12 +1,19 @@
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
+import { getArticles } from "@/lib/microcms";
 
-export default function RootLayout({
+
+export default async function GuidePagesLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
+  const { contents } = await getArticles()
+
+  if (!contents) return <span>取得したガイド記事は0件でした。</span>
+
   return (
     <main className="flex flex-col justify-center items-center gap-12">
       <section className="flex w-full max-w-7xl justify-center items-center flex-col lg:flex-row lg:gap-12">
@@ -23,9 +30,16 @@ export default function RootLayout({
       </section>
       <section className="px-4 w-full max-w-7xl ">
         <div className="grid grid-cols-[16rem_1fr]">
-          <div className="w-64 border-r-2 border-gray-100 px-4">
+          <div className="sticky top-[128px] h-[calc(100vh-128px)] w-64px-4">
             <ul className="flex flex-col">
-              <Link href="./auto-reg"><Button variant="ghost" className="w-full justify-start my-0.5 hover:font-bold">自動登録</Button></Link>
+              <p className="text-sm font-semibold mx-4 py-1">使い方ガイド</p>
+              {contents.map((article) => (
+                <Link href={`/guides/${article.id}`} key={article.id}>
+                  <Button variant="ghost" className="w-full font-normal text-start whitespace-break-spaces hover:cursor-pointer justify-start my-0.5 hover:font-semibold">
+                    {article.title}
+                  </Button>
+                </Link>
+              ))}
             </ul>
           </div>
           <div className="px-8">{children}</div>

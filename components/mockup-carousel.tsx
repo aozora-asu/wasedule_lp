@@ -19,7 +19,7 @@ export default function MockupCarousel() {
   ]
 
   return (
-    <div className="max-w-[420px] bg-[url(/screenshot-frame.png)] bg-contain p-[20px] [&>div]:rounded-[56px] overflow-hidden">
+    <div className="max-w-[340px] lg:max-w-[420px] bg-[url(/screenshot-frame.png)] bg-contain p-[15px] lg:mt-3 lg:p-[20px] [&>div]:rounded-[48px] lg:[&>div]:rounded-[56px] overflow-hidden">
       <div className="embla" ref={emblaRef}>
         <div className="flex">
           {screenshots.map((file) => (

@@ -6,7 +6,7 @@ export default function Footer() {
     <footer className="flex flex-col justify-center items-center px-4 py-8 gap-8">
       <section
         className="flex items-center
-          gap-8 justify-between w-full max-w-4xl mt-16 px-3"
+          gap-8 justify-between w-full max-w-7xl mt-16 px-3"
       >
         <Link href="">
           <Image

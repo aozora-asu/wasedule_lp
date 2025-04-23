@@ -29,6 +29,7 @@ export default async function StaticDetailPage({
         className="
         [&>figure>img]:max-h-[600px] 
         [&>figure>img]:w-auto 
+        [&>figure>img]:rounded-sm
         [&>p]:pt-6 
         [&>p]:pb-2
         [&>blockquote]:p-6

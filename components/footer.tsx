@@ -5,8 +5,8 @@ export default function Footer() {
   return (
     <footer className="flex flex-col justify-center items-center px-4 py-8 gap-8">
       <section
-        className="flex flex-col lg:flex-row items-center
-          gap-8 justify-between w-full max-w-4xl mt-16"
+        className="flex items-center
+          gap-8 justify-between w-full max-w-4xl mt-16 px-3"
       >
         <Link href="">
           <Image
@@ -51,7 +51,7 @@ export default function Footer() {
           height={36}
           alt="Aozora Studio"
         />
-        <p className="text-sm font-semibold">© 2025 Aozora Studio</p>
+        <p className="text-sm font-semibold p-3">© 2025 Aozora Studio</p>
       </section>
     </footer>
   )

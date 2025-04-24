@@ -26,15 +26,15 @@ export async function NavigationMenuUsageGuides() {
     <NavigationMenuItem>
       <NavigationMenuTrigger>使い方ガイド</NavigationMenuTrigger>
       <NavigationMenuContent>
-        <ul className="grid gap-2 p-2 md:w-[400px] lg:grid-cols-[.75fr_1fr]">
-          <li className={`row-span-${featuredContents.length}`}>
+        <ul className={`grid gap-2 p-2 md:w-[400px] grid-rows-3 grid-cols-[.75fr_1fr]`}>
+          <li className="row-span-3">
             <NavigationMenuLink asChild>
               <Link
                 className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-4 no-underline outline-none focus:shadow-md"
                 href={`/guides/${mostFeaturedContents[0].id}`}
               >
                 <div className="h-full w-full" >
-                  <Image src="/auto-reg.png" height={400} width={400} alt="自動登録をイメージしたスクリーンショット" />
+                  <Image src="/auto-reg.png" height={400} width={400} alt="自動登録をイメージしたスクリーンショット" className="w-full h-full object-cover" />
                 </div>
                 <div className="mb-2 mt-4 text-lg font-medium">
                   {mostFeaturedContents[0].title}
@@ -51,13 +51,13 @@ export async function NavigationMenuUsageGuides() {
                 <Link
                   href="/guides/reg-assignments"
                   className={cn(
-                    "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                    "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground h-full"
                   )}
                 >
                   <div className="text-sm font-medium leading-none">
                     {content.title}
                   </div>
-                  <p className="line-clamp-4 text-sm leading-snug text-muted-foreground">
+                  <p className="line-clamp-3 text-sm leading-snug text-muted-foreground">
                     {content.summary}
                   </p>
                 </Link>

@@ -15,7 +15,9 @@ export type Feature = {
   heading: string;
   body: string;
   image: {
-    "url": string
+    "url": string,
+    "width": string,
+    "height": string,
   };
 }
 

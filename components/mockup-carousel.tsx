@@ -15,7 +15,6 @@ export default function MockupCarousel() {
     "単位B.png",
     "残機A.png",
     "残機B.png",
-    "スケジュール.png",
   ]
 
   return (

@@ -16,7 +16,7 @@ export default function Footer() {
             alt="わせジュール"
           />
         </Link>
-        <div className="flex flex-wrap max-w-7xl gap-4">
+        <div className="flex flex-wrap max-w-7xl gap-8">
           <Link href="https://x.com/wasedule">
             <Image
               src="/external-assets/x-logo/logo-black.png"

@@ -14,7 +14,7 @@ export async function generateStaticParams() {
 export default async function StaticDetailPage({
   params,
 }: {
-  params: { articleId: string };
+  params: Promise<{ articleId: string }>;
 }) {
   const { articleId } = await params
   const blog = await getDetail(articleId);

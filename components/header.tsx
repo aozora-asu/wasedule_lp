@@ -112,7 +112,7 @@ export default function Header() {
               </Link>
             </ul>
             <footer className="flex flex-col gap-3 text-zinc-300 text-xs my-8">
-              <div className="flex justify-center flex-wrap max-w-7xl gap-4 opacity-15">
+              <div className="flex justify-center flex-wrap max-w-7xl gap-8 opacity-15">
                 <Link href="">
                   <Image
                     src="/external-assets/x-logo/logo-black.png"

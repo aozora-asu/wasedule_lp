@@ -30,7 +30,7 @@ export default async function GuidePagesLayout({
       </section>
       <section className="px-4 w-full max-w-7xl ">
         <div className="lg:grid grid-cols-[16rem_1fr]">
-          <div className="hidden lg:block sticky top-[128px] h-[calc(100vh-128px)] w-64px-4">
+          <div className="hidden lg:block sticky top-[128px] h-min w-64px-4">
             <ul className="flex flex-col">
               <p className="text-sm font-semibold mx-4 py-1">使い方ガイド</p>
               {contents.map((article) => (

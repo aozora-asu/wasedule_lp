@@ -18,7 +18,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { sendContactEmail } from "@/actions/send-email";
 import { useState } from "react";
-import { CheckCircle2 } from "lucide-react";
+import { CheckCircle2, Send } from "lucide-react";
 
 const formSchema = z.object({
   username: z.string().min(2, {
@@ -64,77 +64,84 @@ export default function Home() {
             </div>
           </div>
         </section>
-        <section className="px-4">
+        <section className="px-4 w-full max-w-7xl">
           <div className="flex flex-col items-center gap-2">
             {state === "waiting" ? (
               <Form {...form}>
                 <form
                   onSubmit={form.handleSubmit(onSubmit)}
-                  className="w-full px-8 space-y-6"
+                  className="w-full max-w-5xl px-3 lg:px-8 space-y-6"
                 >
-                  <FormField
-                    control={form.control}
-                    name="username"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>お名前</FormLabel>
-                        <FormControl>
-                          <Input placeholder="山田太郎" {...field} />
-                        </FormControl>
-                        <FormDescription>
-                          ご自身のお名前を入力してください
-                        </FormDescription>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name="email"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>メールアドレス</FormLabel>
-                        <FormControl>
-                          <Input
-                            placeholder="your.email@example.com"
-                            {...field}
-                          />
-                        </FormControl>
-                        <FormDescription>
-                          返信の際に宛先として使用するメールアドレスを入力してください
-                        </FormDescription>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name="body"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>お問い合わせ内容</FormLabel>
-                        <FormControl>
-                          <Textarea
-                            placeholder="ここにご用件をご記入ください"
-                            rows={5}
-                            className="h-8"
-                            {...field}
-                          />
-                        </FormControl>
-                        <FormDescription>
-                          可能な限り早めにご対応いたしますが、お返事にはお時間をいただく場合があります。
-                        </FormDescription>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <Button type="submit">送信</Button>
+                  <div className="flex flex-col lg:flex-row gap-6">
+                    <div className="flex flex-col gap-6 lg:max-w-3xs">
+                      <FormField
+                        control={form.control}
+                        name="username"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>お名前</FormLabel>
+                            <FormControl>
+                              <Input placeholder="山田太郎" {...field} />
+                            </FormControl>
+                            <FormDescription>
+                              ご自身のお名前を入力してください
+                            </FormDescription>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                      <FormField
+                        control={form.control}
+                        name="email"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>メールアドレス</FormLabel>
+                            <FormControl>
+                              <Input
+                                placeholder="your.email@example.com"
+                                {...field}
+                              />
+                            </FormControl>
+                            <FormDescription>
+                              返信の際に宛先として使用するメールアドレスを入力してください
+                            </FormDescription>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                    </div>
+                    <FormField
+                      control={form.control}
+                      name="body"
+                      render={({ field }) => (
+                        <FormItem className="flex-auto">
+                          <FormLabel>お問い合わせ内容</FormLabel>
+                          <FormControl>
+                            <Textarea
+                              placeholder="ここにご用件をご記入ください"
+                              rows={5}
+                              className="h-96"
+                              {...field}
+                            />
+                          </FormControl>
+                          <FormDescription>
+                            可能な限り早めにご対応いたしますが、お返事にはお時間をいただく場合があります。
+                          </FormDescription>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+
+                  </div>
+                  <div className="flex flex-col items-stretch lg:items-end"><Button type="submit" className="px-8">送信<Send /></Button></div>
                 </form>
               </Form>
             ) : (
               <div className="w-full flex flex-col items-center justify-center text-center">
-                <CheckCircle2 />
-                <h3 className="text-lg font-semibold">送信しました</h3>
+                <div className="flex flex-col items-center p-20">
+                  <CheckCircle2 className="text-primary" />
+                  <h3 className="text-lg font-semibold">送信しました</h3>
+                </div>
                 <p className="text-muted-foreground text-sm m-8">
                   可能な限り早めにご対応いたしますが、お返事にはお時間をいただく場合があります。
                 </p>

@@ -45,13 +45,16 @@ export default function Footer() {
         </Link>
       </section>
       <section className="flex justify-between items-center w-full max-w-7xl text-end py-6 border-t-2 border-gray-100">
-        <Image
-          src="/SVG/aozora-studio_logo-4b.svg"
-          width={200}
-          height={36}
-          alt="Aozora Studio"
-        />
-        <p className="text-sm font-semibold p-3">© 2025 Aozora Studio</p>
+        <div>
+          <Image
+            src="/SVG/aozora-studio_logo-4b.svg"
+            width={200}
+            height={36}
+            alt="Aozora Studio"
+          />
+          <p className="text-left text-sm text-gray-400 px-3">Created and developed only by waseda students. <br />No other company, organization, or Waseda University is related.</p>
+        </div>
+        <p className="text-sm font-semibold p-3 text-gray-600">© 2025 Aozora Studio</p>
       </section>
     </footer>
   )

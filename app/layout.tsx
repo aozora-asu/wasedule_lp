@@ -7,6 +7,7 @@ import Header from "@/components/header";
 const notoSansJP = Noto_Sans_JP({
   subsets: ["latin"],
   display: "swap",
+  variable: "--font-noto-sans-jp"
 });
 
 export const metadata: Metadata = {
@@ -21,7 +22,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${notoSansJP.className} antialiased palt`}>
+      <body className={`${notoSansJP.variable} antialiased palt`}>
         <Header />
         {children}
         <Footer />

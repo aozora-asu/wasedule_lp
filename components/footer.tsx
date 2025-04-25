@@ -54,7 +54,7 @@ export default function Footer() {
           />
           <p className="text-left text-sm text-gray-400 px-3">Created and developed only by waseda students. <br />No other company, organization, or Waseda University is related.</p>
         </div>
-        <p className="text-sm font-semibold p-3 text-gray-600">© 2025 Aozora Studio</p>
+        <p className="text-sm font-semibold p-3 text-gray-600 w-[-webkit-fill-available] lg:w-auto">© 2025 Aozora Studio</p>
       </section>
     </footer>
   )

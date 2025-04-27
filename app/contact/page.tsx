@@ -18,7 +18,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { sendContactEmail } from "@/actions/send-email";
 import { useState } from "react";
-import { CheckCircle2, Send } from "lucide-react";
+import { CheckCircle2, Loader2, Send, SendHorizonal } from "lucide-react";
 
 const formSchema = z.object({
   username: z.string().min(2, {
@@ -29,6 +29,7 @@ const formSchema = z.object({
 });
 
 export default function Home() {
+  const [isPending, setIsPending] = useState(false);
   const [state, setState] = useState("waiting");
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -41,12 +42,15 @@ export default function Home() {
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    sendContactEmail({
-      name: values.username,
-      email: values.email,
-      body: values.body,
-    });
-    setState("sent");
+    setIsPending(true);
+    setTimeout(function () {
+      sendContactEmail({
+        name: values.username,
+        email: values.email,
+        body: values.body,
+      });
+      setState("sent");
+    }, 500);
   }
 
   return (
@@ -131,16 +135,31 @@ export default function Home() {
                         </FormItem>
                       )}
                     />
-
                   </div>
-                  <div className="flex flex-col items-stretch lg:items-end"><Button type="submit" className="px-8">送信<Send /></Button></div>
+                  <div className="flex flex-col items-stretch lg:items-end">
+                    {!isPending ? (
+                      <Button type="submit" className="px-8">
+                        送信
+                        <Send />
+                      </Button>
+                    ) : (
+                      <Button type="submit" className="px-8" disabled>
+                        <Loader2 className="animate-spin" />
+                        送信しています
+                        <Send />
+                      </Button>
+                    )}
+                  </div>
                 </form>
               </Form>
             ) : (
-              <div className="w-full flex flex-col items-center justify-center text-center">
-                <div className="flex flex-col items-center p-20">
-                  <CheckCircle2 className="text-primary" />
-                  <h3 className="text-lg font-semibold">送信しました</h3>
+              <div className="w-full flex flex-col items-center justify-center text-center text-primary">
+                <div className="flex flex-col items-center p-20 w-full bg-card rounded-xl gap-4">
+                  <Send/>
+                  <div className="flex gap-0.5">
+                    <h3 className="text-lg font-medium">送信しました</h3>
+                    <CheckCircle2 className="pt-1" />
+                  </div>
                 </div>
                 <p className="text-muted-foreground text-sm m-8">
                   可能な限り早めにご対応いたしますが、お返事にはお時間をいただく場合があります。

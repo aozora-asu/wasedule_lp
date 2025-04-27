@@ -38,9 +38,7 @@ export default function Header() {
             <NavigationMenuUsageGuides />
             <NavigationMenuItem>
               <Link href="/contact" legacyBehavior passHref>
-                <NavigationMenuLink
-                  className={navigationMenuTriggerStyle()}
-                >
+                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                   お問い合わせ
                 </NavigationMenuLink>
               </Link>
@@ -90,9 +88,11 @@ export default function Header() {
                 ナビゲーションメニュー
               </SheetTitle>
             </SheetHeader>
-            <ul className="flex flex-col gap-4 text-sm font-semibold">
+            <ul className="flex flex-col gap-4 text-xs font-medium">
               <li className="ml-2">
-                <SheetClose asChild><Link href="/">トップ</Link></SheetClose>
+                <SheetClose asChild>
+                  <Link href="/">トップ</Link>
+                </SheetClose>
               </li>
               <div className="flex flex-col gap-4">
                 <li>
@@ -111,8 +111,8 @@ export default function Header() {
                 </p>
               </Link>
             </ul>
-            <footer className="flex flex-col gap-3 text-zinc-300 text-xs my-8">
-              <div className="flex justify-center flex-wrap max-w-7xl gap-8 opacity-15">
+            <footer className="flex flex-col gap-3 text-zinc-500 text-xs my-8 gap-8">
+              <div className="flex justify-center flex-wrap max-w-7xl gap-8 opacity-60">
                 <Link href="">
                   <Image
                     src="/external-assets/x-logo/logo-black.png"
@@ -136,12 +136,12 @@ export default function Header() {
                 <Link href="">利用規約</Link>
               </section>
               <section className="w-full max-w-7xl text-end">
-                <p>© 2024 わせジュール</p>
+                <p>© 2025 AozoraStudio</p>
               </section>
             </footer>
           </SheetContent>
         </Sheet>
       </div>
     </header>
-  )
+  );
 }

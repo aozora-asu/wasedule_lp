@@ -138,6 +138,10 @@
   .text-longshadow {
     box-shadow: 1px 1px rgba(71, 78, 88, .02), 2px 2px rgba(75, 82, 92, .019), 3px 3px rgba(80, 86, 96, .019), 4px 4px rgba(84, 90, 100, .018), 5px 5px rgba(88, 94, 103, .018), 6px 6px rgba(92, 98, 107, .017), 7px 7px rgba(96, 102, 111, .017), 8px 8px hsla(214, 6%, 42%, .016), 9px 9px hsla(214, 6%, 44%, .016), 10px 10px hsla(214, 6%, 45%, .015), 11px 11px hsla(214, 6%, 47%, .015), 12px 12px hsla(214, 6%, 49%, .014), 13px 13px hsla(217, 5%, 50%, .014), 14px 14px hsla(217, 5%, 52%, .013), 15px 15px hsla(217, 5%, 54%, .013), 16px 16px hsla(215, 5%, 55%, .012), 17px 17px hsla(215, 5%, 57%, .012), 18px 18px hsla(215, 6%, 58%, .011), 19px 19px hsla(215, 6%, 60%, .011), 20px 20px hsla(218, 6%, 62%, .01), 21px 21px hsla(213, 6%, 63%, .01), 22px 22px hsla(213, 6%, 65%, .009), 23px 23px hsla(216, 6%, 67%, .009), 24px 24px hsla(216, 6%, 68%, .008), 25px 25px hsla(216, 6%, 70%, .008), 26px 26px hsla(213, 6%, 72%, .007), 27px 27px hsla(213, 7%, 73%, .007), 28px 28px hsla(218, 6%, 75%, .006), 29px 29px hsla(218, 7%, 76%, .006), 30px 30px hsla(213, 8%, 78%, .005), 31px 31px hsla(218, 8%, 80%, .005), 32px 32px hsla(218, 9%, 82%, .004), 33px 33px hsla(214, 8%, 83%, .004), 34px 34px hsla(214, 9%, 85%, .003), 35px 35px hsla(220, 9%, 87%, .003), 36px 36px rgba(222, 225, 228, .002), 37px 37px rgba(227, 229, 232, .002), 38px 38px rgba(231, 233, 237, .001), 39px 39px rgba(236, 238, 241, .001), 40px 40px rgba(240, 242, 245, 0), 0 0 rgba(67, 74, 84, .02);
   }
+  .text-4-5xl {
+  font-size: calc((var(--text-4xl) + var(--text-5xl)) / 2) /* 2.625rem = 42px */;
+  line-height: var(--tw-leading, calc((var(--text-4xl--line-height) + var(--text-5xl--line-height)) / 2) /* 1 */);
+}
 }
 
 .embla {

@@ -21,6 +21,11 @@ export type Feature = {
   };
 }
 
+export type Others = {
+  privacy: string;
+  terms: string;
+}
+
 if (!process.env.MICROCMS_DOMAIN) {
   throw new Error("MICROCMS_DOMAIN is required");
 }
@@ -59,3 +64,11 @@ export const getFeatures = async () => {
   });
   return blog;
 };
+
+// その他情報を取得`
+export const getOthers = async () => {
+  const others = await client.get<Others>({
+    endpoint: "others"
+  });
+  return others;
+}

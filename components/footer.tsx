@@ -8,7 +8,7 @@ export default function Footer() {
         className="flex items-center
           gap-8 justify-between w-full max-w-7xl mt-16 px-3"
       >
-        <Link href="">
+        <Link href="/">
           <Image
             src="/wasedule_icon.svg"
             width={36}
@@ -37,10 +37,10 @@ export default function Footer() {
         </div>
       </section>
       <section className="flex flex-col items-start max-w-7xl w-full">
-        <Link href="" className="p-3 text-sm font-semibold">
+        <Link href="/privacy" className="p-3 text-sm font-semibold">
           プライバシーポリシー
         </Link>
-        <Link href="" className="p-3 text-sm font-semibold">
+        <Link href="/terms" className="p-3 text-sm font-semibold">
           利用規約
         </Link>
       </section>

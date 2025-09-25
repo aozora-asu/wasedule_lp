@@ -111,7 +111,7 @@ export default function Header() {
                 </p>
               </Link>
             </ul>
-            <footer className="flex flex-col gap-3 text-zinc-500 text-xs my-8 gap-8">
+            <footer className="flex flex-col text-zinc-500 text-xs my-8 gap-8">
               <div className="flex justify-center flex-wrap max-w-7xl gap-8 opacity-60">
                 <Link href="">
                   <Image
@@ -132,8 +132,8 @@ export default function Header() {
                 </Link>
               </div>
               <section className="flex flex-wrap gap-3">
-                <Link href="">プライバシーポリシー</Link>
-                <Link href="">利用規約</Link>
+                <Link href="/privacy">プライバシーポリシー</Link>
+                <Link href="/terms">利用規約</Link>
               </section>
               <section className="w-full max-w-7xl text-end">
                 <p>© 2025 AozoraStudio</p>

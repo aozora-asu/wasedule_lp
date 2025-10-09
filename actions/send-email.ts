@@ -11,19 +11,21 @@ type SendEmailResponse = {
 };
 
 type SendEmailParams = {
+  subject: string;
   name: string;
   email: string;
   body: string;
 };
 
 export async function sendContactEmail({
+  subject,
   name,
   email,
   body,
 }: SendEmailParams): Promise<SendEmailResponse> {
   const from = process.env.CONTACT_EMAIL_FROM || ""; //TODO エラー処理
   const to = process.env.CONTACT_EMAIL_TO || "";
-  const subject = `[LPお問い合わせ]${name}さんのお問い合わせ`;
+  const subject = subject;
   const react = EmailTemplate({ name, email, body });
 
   try {

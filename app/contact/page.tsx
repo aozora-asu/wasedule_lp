@@ -127,7 +127,7 @@ export default function Home() {
                         )}
                       />
                     </div>
-                    <div className="flex flex-col gap-6 lg:max-w-3xs">
+                    <div className="flex flex-col gap-6">
                       <FormField
                         control={form.control}
                         name="subject"

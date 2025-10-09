@@ -18,7 +18,13 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { sendContactEmail } from "@/actions/send-email";
 import { useState } from "react";
-import { CheckCircle2, CircleX, Loader2, MailWarning, Send } from "lucide-react";
+import {
+  CheckCircle2,
+  CircleX,
+  Loader2,
+  MailWarning,
+  Send,
+} from "lucide-react";
 
 const formSchema = z.object({
   username: z.string().min(2, {
@@ -26,6 +32,7 @@ const formSchema = z.object({
   }),
   email: z.string().email({ message: "無効なメールアドレスです。" }),
   body: z.string(),
+  subject: z.string(),
 });
 
 export default function Home() {
@@ -35,6 +42,7 @@ export default function Home() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
+      subject: "",
       username: "",
       email: "",
       body: "",
@@ -45,12 +53,13 @@ export default function Home() {
     setIsPending(true);
     setTimeout(async function () {
       const result = await sendContactEmail({
+        subject: values.subject,
         name: values.username,
         email: values.email,
         body: values.body,
       });
-      if (result['error'] == null && result['data'] != null) {
-        setState("sent")
+      if (result["error"] == null && result["data"] != null) {
+        setState("sent");
       } else {
         setState("error");
       }
@@ -118,27 +127,45 @@ export default function Home() {
                         )}
                       />
                     </div>
-                    <FormField
-                      control={form.control}
-                      name="body"
-                      render={({ field }) => (
-                        <FormItem className="flex-auto">
-                          <FormLabel>お問い合わせ内容</FormLabel>
-                          <FormControl>
-                            <Textarea
-                              placeholder="ここにご用件をご記入ください"
-                              rows={5}
-                              className="h-96"
-                              {...field}
-                            />
-                          </FormControl>
-                          <FormDescription>
-                            可能な限り早めにご対応いたしますが、お返事にはお時間をいただく場合があります。
-                          </FormDescription>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
+                    <div className="flex flex-col gap-6 lg:max-w-3xs">
+                      <FormField
+                        control={form.control}
+                        name="subject"
+                        render={({ field }) => (
+                          <FormItem className="flex-auto">
+                            <FormLabel>件名</FormLabel>
+                            <FormControl>
+                              <Input
+                                placeholder="件名を入力ください"
+                                {...field}
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                      <FormField
+                        control={form.control}
+                        name="body"
+                        render={({ field }) => (
+                          <FormItem className="flex-auto">
+                            <FormLabel>お問い合わせ内容</FormLabel>
+                            <FormControl>
+                              <Textarea
+                                placeholder="ここにご用件をご記入ください"
+                                rows={5}
+                                className="h-96"
+                                {...field}
+                              />
+                            </FormControl>
+                            <FormDescription>
+                              可能な限り早めにご対応いたしますが、お返事にはお時間をいただく場合があります。
+                            </FormDescription>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                    </div>
                   </div>
                   <div className="flex flex-col items-stretch lg:items-end">
                     {!isPending ? (
@@ -169,21 +196,20 @@ export default function Home() {
                   お手数ですが、各種SNSのダイレクトメッセージ等を通じて問題を報告してください。
                 </p>
               </div>
-            )
-              : (
-                <div className="w-full flex flex-col items-center justify-center text-center text-primary">
-                  <div className="flex flex-col items-center p-20 w-full bg-card rounded-xl gap-4">
-                    <Send />
-                    <div className="flex gap-0.5">
-                      <h3 className="text-lg font-medium">送信しました</h3>
-                      <CheckCircle2 className="pt-1" />
-                    </div>
+            ) : (
+              <div className="w-full flex flex-col items-center justify-center text-center text-primary">
+                <div className="flex flex-col items-center p-20 w-full bg-card rounded-xl gap-4">
+                  <Send />
+                  <div className="flex gap-0.5">
+                    <h3 className="text-lg font-medium">送信しました</h3>
+                    <CheckCircle2 className="pt-1" />
                   </div>
-                  <p className="text-muted-foreground text-sm m-8">
-                    可能な限り早めにご対応いたしますが、お返事にはお時間をいただく場合があります。
-                  </p>
                 </div>
-              )}
+                <p className="text-muted-foreground text-sm m-8">
+                  可能な限り早めにご対応いたしますが、お返事にはお時間をいただく場合があります。
+                </p>
+              </div>
+            )}
           </div>
         </section>
       </main>

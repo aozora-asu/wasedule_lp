@@ -64,6 +64,8 @@ export default function Home() {
             name: values.username,
             email: values.email,
             body: values.body,
+            sentFrom: "landing",
+            userEnv: navigator.userAgent,
           }),
         });
 

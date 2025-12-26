@@ -102,6 +102,7 @@ export default function Home() {
               <Form {...form}>
                 <form
                   onSubmit={form.handleSubmit(onSubmit)}
+                  autoComplete="on"
                   className="w-full max-w-5xl px-3 lg:px-8 space-y-6"
                 >
                   <div className="flex flex-col lg:flex-row gap-6">
@@ -113,7 +114,13 @@ export default function Home() {
                           <FormItem>
                             <FormLabel>お名前</FormLabel>
                             <FormControl>
-                              <Input placeholder="山田太郎" {...field} />
+                              <Input
+                                id="contact-name"
+                                placeholder="山田太郎"
+                                autoComplete="name"
+                                autoCapitalize="words"
+                                {...field}
+                              />
                             </FormControl>
                             <FormDescription>
                               ご自身のお名前を入力してください
@@ -130,7 +137,10 @@ export default function Home() {
                             <FormLabel>メールアドレス</FormLabel>
                             <FormControl>
                               <Input
+                                id="contact-email"
                                 placeholder="your.email@example.com"
+                                autoComplete="email"
+                                inputMode="email"
                                 {...field}
                               />
                             </FormControl>
@@ -151,7 +161,9 @@ export default function Home() {
                             <FormLabel>件名</FormLabel>
                             <FormControl>
                               <Input
+                                id="contact-subject"
                                 placeholder="件名を入力ください"
+                                autoComplete="on"
                                 {...field}
                               />
                             </FormControl>
@@ -167,7 +179,9 @@ export default function Home() {
                             <FormLabel>お問い合わせ内容</FormLabel>
                             <FormControl>
                               <Textarea
+                                id="contact-body"
                                 placeholder="ここにご用件をご記入ください"
+                                autoComplete="off"
                                 rows={5}
                                 className="h-96"
                                 {...field}

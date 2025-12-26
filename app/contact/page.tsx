@@ -16,7 +16,6 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { sendContactEmail } from "@/actions/send-email";
 import { useState } from "react";
 import {
   CheckCircle2,
@@ -49,18 +48,34 @@ export default function Home() {
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
+  async function onSubmit(values: z.infer<typeof formSchema>) {
     setIsPending(true);
-    setTimeout(async function () {
-      const result = await sendContactEmail({
-        subject: values.subject,
-        name: values.username,
-        email: values.email,
-        body: values.body,
-      });
-      if (result["error"] == null && result["data"] != null) {
-        setState("sent");
-      } else {
+
+    // 現状のUI演出（少し待ってから送信）を維持
+    setTimeout(async () => {
+      try {
+        const res = await fetch("/api/contact", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            subject: values.subject,
+            name: values.username,
+            email: values.email,
+            body: values.body,
+          }),
+        });
+
+        const json: unknown = await res.json().catch(() => null);
+        const ok =
+          res.ok &&
+          !!json &&
+          typeof json === "object" &&
+          (json as { ok?: unknown }).ok === true;
+
+        setState(ok ? "sent" : "error");
+      } catch {
         setState("error");
       }
     }, 500);

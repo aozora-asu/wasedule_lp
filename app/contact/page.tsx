@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { contactFormAction } from "@/actions/contactForm";
 import { useState } from "react";
 import {
   CheckCircle2,
@@ -48,36 +49,18 @@ export default function Home() {
     },
   });
 
-  async function onSubmit(values: z.infer<typeof formSchema>) {
+  function onSubmit(values: z.infer<typeof formSchema>) {
     setIsPending(true);
-
-    // 現状のUI演出（少し待ってから送信）を維持
-    setTimeout(async () => {
-      try {
-        const res = await fetch("/api/contact", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            subject: values.subject,
-            name: values.username,
-            email: values.email,
-            body: values.body,
-            sentFrom: "landing",
-            userEnv: navigator.userAgent,
-          }),
-        });
-
-        const json: unknown = await res.json().catch(() => null);
-        const ok =
-          res.ok &&
-          !!json &&
-          typeof json === "object" &&
-          (json as { ok?: unknown }).ok === true;
-
-        setState(ok ? "sent" : "error");
-      } catch {
+    setTimeout(async function () {
+      const result = await contactFormAction({
+        subject: values.subject,
+        name: values.username,
+        email: values.email,
+        body: values.body,
+      });
+      if (result.success) {
+        setState("sent");
+      } else {
         setState("error");
       }
     }, 500);
@@ -104,7 +87,6 @@ export default function Home() {
               <Form {...form}>
                 <form
                   onSubmit={form.handleSubmit(onSubmit)}
-                  autoComplete="on"
                   className="w-full max-w-5xl px-3 lg:px-8 space-y-6"
                 >
                   <div className="flex flex-col lg:flex-row gap-6">
@@ -116,13 +98,7 @@ export default function Home() {
                           <FormItem>
                             <FormLabel>お名前</FormLabel>
                             <FormControl>
-                              <Input
-                                id="contact-name"
-                                placeholder="山田太郎"
-                                autoComplete="name"
-                                autoCapitalize="words"
-                                {...field}
-                              />
+                              <Input placeholder="山田太郎" {...field} />
                             </FormControl>
                             <FormDescription>
                               ご自身のお名前を入力してください
@@ -139,10 +115,7 @@ export default function Home() {
                             <FormLabel>メールアドレス</FormLabel>
                             <FormControl>
                               <Input
-                                id="contact-email"
                                 placeholder="your.email@example.com"
-                                autoComplete="email"
-                                inputMode="email"
                                 {...field}
                               />
                             </FormControl>
@@ -163,9 +136,7 @@ export default function Home() {
                             <FormLabel>件名</FormLabel>
                             <FormControl>
                               <Input
-                                id="contact-subject"
                                 placeholder="件名を入力ください"
-                                autoComplete="on"
                                 {...field}
                               />
                             </FormControl>
@@ -181,9 +152,7 @@ export default function Home() {
                             <FormLabel>お問い合わせ内容</FormLabel>
                             <FormControl>
                               <Textarea
-                                id="contact-body"
                                 placeholder="ここにご用件をご記入ください"
-                                autoComplete="off"
                                 rows={5}
                                 className="h-96"
                                 {...field}

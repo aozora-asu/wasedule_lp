@@ -9,7 +9,7 @@ export const EmailTemplate = ({ name, subject, email, body }: EmailTemplateProps
   <div
     style={{
       backgroundColor: "#f9fafb",
-      padding: "32px",
+      padding: "16px",
       fontFamily:
         "ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, Apple Color Emoji, Segoe UI Emoji",
       color: "#111827",

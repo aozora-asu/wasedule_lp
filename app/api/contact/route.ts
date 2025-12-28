@@ -48,7 +48,7 @@ export async function POST(request: Request) {
   const sentFromValue: ["landing"] | ["app"] = sentFrom === "landing" ? ["landing"] : ["app"];
   const userEnvValue = userEnv || request.headers.get("user-agent") || "unknown";
 
-  await postContact({
+  const postContactResult = await postContact({
     title: subject,
     name,
     email,
@@ -58,10 +58,13 @@ export async function POST(request: Request) {
     userEnv: userEnvValue,
   });
 
+  const microCMSDomain = process.env.MICROCMS_DOMAIN || "unknown";
+
   const lineMessage = `【お問い合わせがありました(${sentFromValue[0]})】
 name: ${name}
 mail: ${email}
 sub: ${subject}
+http://${microCMSDomain}.microcms.io/apis/contacts/${postContactResult.id}
 ===================
 ${body}`;
 

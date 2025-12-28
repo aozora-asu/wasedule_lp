@@ -89,9 +89,9 @@ ${body}`;
     const react = EmailTemplate({ name, subject, email, body });
 
     const { data, error } = await resend.emails.send({
-      from,
+      from: `わせジュールサポート <${from}>`,
       to: email,
-      subject:"【わせジュール】お問い合わせを受け付けました",
+      subject: "お問い合わせを受け付けました",
       react,
     });
 

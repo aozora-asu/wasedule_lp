@@ -24,6 +24,7 @@ export const EmailTemplate = ({ name, subject, email, body }: EmailTemplateProps
     >
       <div style={{ padding: "32px 24px" }}>
         <div style={{ marginBottom: "24px" }}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="https://wasedule.com/static-assets/wasedule_icon.png"
             width={36}
@@ -237,6 +238,7 @@ export const EmailTemplate = ({ name, subject, email, body }: EmailTemplateProps
           }}
         >
           <div>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="https://wasedule.com/static-assets/aozora-studio_logo.png"
               width={200}

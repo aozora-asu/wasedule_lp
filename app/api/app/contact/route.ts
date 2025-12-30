@@ -67,6 +67,7 @@ export async function POST(request: Request) {
       { status: 200, headers: corsHeaders }
     );
   } catch (error) {
+    console.error("Error processing contact inquiry:", error);
     return NextResponse.json(
       { error: "Internal Server Error" },
       { status: 500, headers: corsHeaders }

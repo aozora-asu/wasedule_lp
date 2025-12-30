@@ -16,7 +16,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { sendContactEmail } from "@/actions/send-email";
+import { contactFormAction } from "@/actions/contactForm";
 import { useState } from "react";
 import {
   CheckCircle2,
@@ -52,13 +52,13 @@ export default function Home() {
   function onSubmit(values: z.infer<typeof formSchema>) {
     setIsPending(true);
     setTimeout(async function () {
-      const result = await sendContactEmail({
+      const result = await contactFormAction({
         subject: values.subject,
         name: values.username,
         email: values.email,
         body: values.body,
       });
-      if (result["error"] == null && result["data"] != null) {
+      if (result.success) {
         setState("sent");
       } else {
         setState("error");

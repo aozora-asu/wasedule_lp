@@ -1,30 +1,40 @@
-import { createClient } from 'microcms-js-sdk';
+import { createClient } from "microcms-js-sdk";
 
 export type Blog = {
   id: string;
   title: string;
   body: string;
   category: {
-    "category-name": string
+    "category-name": string;
   };
   summary: string;
-}
+};
 
 export type Feature = {
   id: string;
   heading: string;
   body: string;
   image: {
-    "url": string,
-    "width": string,
-    "height": string,
+    url: string;
+    width: string;
+    height: string;
   };
-}
+};
 
 export type Others = {
   privacy: string;
   terms: string;
-}
+};
+
+export type ContactPostInput = {
+  title: string;
+  name: string;
+  email: string;
+  content: string;
+  sentAt: Date;
+  sentFrom: ["landing"] | ["app"];
+  userEnv: string;
+};
 
 if (!process.env.MICROCMS_DOMAIN) {
   throw new Error("MICROCMS_DOMAIN is required");
@@ -42,10 +52,10 @@ export const client = createClient({
 // 記事一覧を取得
 export const getArticles = async () => {
   const articles = await client.getList<Blog>({
-    endpoint: "guides"
+    endpoint: "guides",
   });
   return articles;
-}
+};
 
 // 記事の詳細を取得
 export const getDetail = async (contentId: string) => {
@@ -56,11 +66,10 @@ export const getDetail = async (contentId: string) => {
   return blog;
 };
 
-
 // 記事を取得
 export const getFeatures = async () => {
   const blog = await client.getList<Feature>({
-    endpoint: "features"
+    endpoint: "features",
   });
   return blog;
 };
@@ -68,7 +77,16 @@ export const getFeatures = async () => {
 // その他情報を取得`
 export const getOthers = async () => {
   const others = await client.get<Others>({
-    endpoint: "others"
+    endpoint: "others",
   });
   return others;
-}
+};
+
+// お問い合わせ内容を保存
+export const postContact = async (data: ContactPostInput) => {
+  const response = await client.create({
+    endpoint: "contacts",
+    content: data,
+  });
+  return response;
+};

@@ -10,6 +10,7 @@ type SendEmailParams = {
   name: string;
   email: string;
   body: string;
+  token: string | null;
 };
 
 export async function contactFormAction({
@@ -17,8 +18,30 @@ export async function contactFormAction({
   name,
   email,
   body,
+  token,
 }: SendEmailParams): Promise<SendEmailResponse> {
   try {
+    if(!token) {
+      return { success: false };
+    }
+
+    const verifyRes = await fetch(
+      "https://challenges.cloudflare.com/turnstile/v0/siteverify",
+      {
+        method: "POST",
+        body: JSON.stringify({
+          secret: process.env.TURNSTILE_SECRET_KEY,
+          response: token,
+        }),
+        headers: { "Content-Type": "application/json" },
+      },
+    );
+    const verifyData = await verifyRes.json();
+
+    if (!verifyData.success) {
+      return { success: false };
+    }
+
     const { success, error } = await processContactInquiry({
       subject,
       name,

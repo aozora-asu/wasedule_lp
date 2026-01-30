@@ -25,6 +25,7 @@ import {
   MailWarning,
   Send,
 } from "lucide-react";
+import Turnstile from "react-turnstile";
 
 const formSchema = z.object({
   username: z.string().min(2, {
@@ -38,6 +39,7 @@ const formSchema = z.object({
 export default function Home() {
   const [isPending, setIsPending] = useState(false);
   const [state, setState] = useState("waiting");
+  const [token, setToken] = useState<string | null>(null);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -57,12 +59,14 @@ export default function Home() {
         name: values.username,
         email: values.email,
         body: values.body,
+        token: token,
       });
       if (result.success) {
         setState("sent");
       } else {
         setState("error");
       }
+      setIsPending(false);
     }, 500);
   }
 
@@ -127,7 +131,7 @@ export default function Home() {
                         )}
                       />
                     </div>
-                    <div className="flex flex-col gap-6">
+                    <div className="flex flex-col gap-6 flex-1">
                       <FormField
                         control={form.control}
                         name="subject"
@@ -168,8 +172,17 @@ export default function Home() {
                     </div>
                   </div>
                   <div className="flex flex-col items-stretch lg:items-end">
+                    <Turnstile
+                      sitekey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || ""}
+                      onVerify={(token) => setToken(token)}
+                      onExpire={() => setToken(null)}
+                    />
                     {!isPending ? (
-                      <Button type="submit" className="px-8">
+                      <Button
+                        type="submit"
+                        className="px-8"
+                        disabled={!token}
+                      >
                         送信
                         <Send />
                       </Button>

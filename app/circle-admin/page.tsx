@@ -95,7 +95,7 @@ export default function TermsPage() {
             </div>
             <Button asChild className="self-start">
               <Link
-                href="https://admin.unit.winc.ne.jp/posting"
+                href="https://admin-unit.winc.ne.jp/"
                 target="_blank"
                 rel="noopener noreferrer"
               >

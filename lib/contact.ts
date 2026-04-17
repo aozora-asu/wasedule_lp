@@ -1,5 +1,4 @@
 import { Resend } from "resend";
-import { sendLineNotification } from "./line";
 import { ContactPostInput, postContact } from "./microcms";
 import { EmailTemplate } from "@/components/email-template";
 import { contactSpreadsheet } from "./google-apps-script";
@@ -31,7 +30,7 @@ export async function processContactInquiry(payload: ContactPayload) {
     };
 
     // お問い合わせ内容をmicroCMSに保存
-    const postContactResult = await postContact(dataToSave);
+    await postContact(dataToSave);
 
     // お問い合わせ内容をGoogleスプレッドシートに保存
     await contactSpreadsheet.create(dataToSave);
@@ -64,22 +63,3 @@ export async function processContactInquiry(payload: ContactPayload) {
     return { success: false, error };
   }
 }
-
-const getLineMessage = ({
-  subject,
-  name,
-  email,
-  body,
-  sentFrom,
-  microCMSDomain,
-  microCMSItemId,
-}: ContactPayload & {
-  microCMSDomain: string;
-  microCMSItemId: string;
-}) => `【お問い合わせがありました(${sentFrom})】
-name: ${name}
-mail: ${email}
-sub: ${subject}
-http://${microCMSDomain}.microcms.io/apis/contacts/${microCMSItemId}
-===================
-${body}`;

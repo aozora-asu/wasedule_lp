@@ -30,7 +30,14 @@ export default function Header() {
             width={36}
             height={36}
             alt="わせジュール"
-            className="h-6 lg:h-9"
+            className="h-6 lg:hidden"
+          />
+          <Image
+            src="/wasedule-logo-colored.svg"
+            width={300}
+            height={36}
+            alt="わせジュール"
+            className="h-9 hidden lg:block"
           />
         </Link>
         <NavigationMenu className="hidden lg:block">

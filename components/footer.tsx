@@ -10,8 +10,8 @@ export default function Footer() {
       >
         <Link href="/">
           <Image
-            src="/wasedule_icon.svg"
-            width={36}
+            src="/wasedule-logo-colored.svg"
+            width={200}
             height={36}
             alt="わせジュール"
           />

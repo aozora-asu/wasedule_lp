@@ -9,12 +9,27 @@ if (!DISCORD_WEBHOOK_URL) {
 const notifyContactSubmission = async (
   data: ContactPostInput,
 ) => {
+  const isApp = data.sentFrom?.[0] === "app";
+  const appVersion = isApp
+    ? data.userEnv?.match(/(?:^|[,(])\s*version:\s*([^,)]+)/)?.[1].trim()
+    : undefined;
+  const packageName = isApp
+    ? data.userEnv?.match(/(?:^|[,(])\s*packageName:\s*([^,)]+)/)?.[1].trim()
+    : undefined;
+  const os = packageName === "com.example.wasedule"
+    ? "iOS"
+    : packageName === "com.wasedule.wase_dule"
+      ? "Android"
+      : undefined;
+
   const content = [
     `**件名**: ${data.title}`,
     `**氏名**: ${data.name}`,
     `**連絡先**: ${data.email}`,
     `**内容**:\n${data.content}`,
-    `**送信元**: ${data.sentFrom && data.sentFrom[0] === "app" ? "アプリ" : "ウェブ"}`,
+    `**送信元**: ${isApp ? "アプリ" : "ウェブ"}`,
+    os && `**OS**: ${os}`,
+    appVersion && `**アプリバージョン**: ${appVersion}`,
   ]
     .filter(Boolean)
     .join("\n");

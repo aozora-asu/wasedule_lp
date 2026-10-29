@@ -34,3 +34,7 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## お問い合わせAPIの認証移行
+
+旧アプリ用の `/api/app/contact` を維持し、新しい匿名受付は `/api/app/v2/contact` に分離しています。新APIは既定で無効です。サーバー設定、Redisによる共有制限、旧版との共存・失効手順、検証方法は [移行手順](docs/contact-api-migration.md) を参照してください。固定鍵のチェックを外すだけの移行は行わないでください。

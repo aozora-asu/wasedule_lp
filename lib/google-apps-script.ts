@@ -11,7 +11,6 @@ if (!GAS_SECRET_TOKEN) {
   throw new Error("GAS_SECRET_TOKEN is not defined");
 }
 
-
 const create = async (data: ContactPostInput) => {
   const res = await fetch(GAS_SCRIPT_URL, {
     method: "POST",
@@ -19,10 +18,8 @@ const create = async (data: ContactPostInput) => {
     headers: {
       "Content-Type": "text/plain;charset=utf-8",
     },
-    body: JSON.stringify({token: GAS_SECRET_TOKEN, ...data}),
+    body: JSON.stringify({ token: GAS_SECRET_TOKEN, ...data }),
   });
-
-  console.log("GAS response status:", await res.text());
 
   if (!res.ok) {
     throw new Error("Failed to submit contact form");

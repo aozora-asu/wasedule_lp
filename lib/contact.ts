@@ -4,7 +4,6 @@ import { EmailTemplate } from "@/components/email-template";
 import { contactSpreadsheet } from "./google-apps-script";
 import { discord } from "./discord";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
 const from = process.env.CONTACT_EMAIL_FROM;
 
 export type ContactPayload = {
@@ -16,7 +15,10 @@ export type ContactPayload = {
   userEnv: string;
 };
 
-export async function processContactInquiry(payload: ContactPayload) {
+export async function processContactInquiry(
+  payload: ContactPayload,
+  options: { sendReceipt?: boolean } = {},
+) {
   const { subject, name, email, body, sentFrom, userEnv } = payload;
   try {
     const dataToSave: ContactPostInput = {
@@ -46,7 +48,10 @@ export async function processContactInquiry(payload: ContactPayload) {
     // Discord通知送信
     await discord.notifyContactSubmission(dataToSave);
 
+    if (options.sendReceipt === false) return { success: true };
+
     // ユーザーへの自動返信メール送信
+    const resend = new Resend(process.env.RESEND_API_KEY);
     const react = EmailTemplate({ name, subject, email, body });
     if (!from) {
       throw new Error("CONTACT_EMAIL_FROM is not defined");

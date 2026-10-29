@@ -1,0 +1,13 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "module": "CommonJS",
+    "moduleResolution": "Node",
+    "jsx": "react-jsx",
+    "outDir": ".contact-test-build",
+    "noEmit": false,
+    "incremental": false
+  },
+  "include": ["lib/contact-api/**/*.ts", "test/contact-api/**/*.ts"],
+  "exclude": ["node_modules", ".next", ".contact-test-build"]
+}

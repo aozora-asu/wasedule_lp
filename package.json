@@ -6,7 +6,9 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test:contact": "tsc -p tsconfig.contact-tests.json && node --test .contact-test-build/test/contact-api/*.test.js",
+    "test:contact:redis": "tsc -p tsconfig.contact-tests.json && node --test .contact-test-build/test/contact-api/redis.integration.js"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",

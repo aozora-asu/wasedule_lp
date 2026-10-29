@@ -21,7 +21,7 @@ export async function contactFormAction({
   token,
 }: SendEmailParams): Promise<SendEmailResponse> {
   try {
-    if(!token) {
+    if (!token) {
       return { success: false };
     }
 
@@ -52,12 +52,11 @@ export async function contactFormAction({
     });
 
     if (error != null || !success) {
-      console.log(error);
       return { success: false };
     }
 
     return { success: true };
-  } catch (error) {
+  } catch {
     return { success: false };
   }
 }
